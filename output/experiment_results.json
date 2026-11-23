@@ -1,0 +1,87 @@
+{
+  "control_experiment": {
+    "B0_infinite_mT": 12.566,
+    "B_center_analytical_mT": 11.668,
+    "B_center_numerical_mT": 11.647,
+    "B_center_measured_mT": 11.638,
+    "B_edge_analytical_mT": 6.161,
+    "max_rel_error_numerical_percent": 0.1725,
+    "rmse_virtual_sensor_mT": 0.0243,
+    "rel_error_virtual_sensor_percent": 0.208,
+    "negative_control_rms_mT": 0.0158
+  },
+  "uniformity_study": [
+    {
+      "L_to_D": 1.0,
+      "L_mm": 40.0,
+      "N_turns": 200,
+      "B_center_mT": 8.886,
+      "B_center_to_B0_pct": 70.71,
+      "uniform_zone_5pct_of_L": 36.2,
+      "uniform_zone_1pct_of_L": 16.2,
+      "B_edge_to_B_center_pct": 63.25
+    },
+    {
+      "L_to_D": 2.5,
+      "L_mm": 100.0,
+      "N_turns": 500,
+      "B_center_mT": 11.668,
+      "B_center_to_B0_pct": 92.85,
+      "uniform_zone_5pct_of_L": 46.6,
+      "uniform_zone_1pct_of_L": 22.7,
+      "B_edge_to_B_center_pct": 52.81
+    },
+    {
+      "L_to_D": 5.0,
+      "L_mm": 200.0,
+      "N_turns": 1000,
+      "B_center_mT": 12.322,
+      "B_center_to_B0_pct": 98.06,
+      "uniform_zone_5pct_of_L": 64.6,
+      "uniform_zone_1pct_of_L": 37.7,
+      "B_edge_to_B_center_pct": 50.74
+    },
+    {
+      "L_to_D": 10.0,
+      "L_mm": 400.0,
+      "N_turns": 2000,
+      "B_center_mT": 12.504,
+      "B_center_to_B0_pct": 99.5,
+      "uniform_zone_5pct_of_L": 80.0,
+      "uniform_zone_1pct_of_L": 58.6,
+      "B_edge_to_B_center_pct": 50.19
+    }
+  ],
+  "step_discretization_study": [
+    {
+      "step_mm": 0.5,
+      "n_points_1d": 401,
+      "max_interpolation_error_pct": 0.003
+    },
+    {
+      "step_mm": 1.0,
+      "n_points_1d": 201,
+      "max_interpolation_error_pct": 0.014
+    },
+    {
+      "step_mm": 2.0,
+      "n_points_1d": 101,
+      "max_interpolation_error_pct": 0.058
+    },
+    {
+      "step_mm": 5.0,
+      "n_points_1d": 41,
+      "max_interpolation_error_pct": 0.347
+    },
+    {
+      "step_mm": 10.0,
+      "n_points_1d": 21,
+      "max_interpolation_error_pct": 1.246
+    },
+    {
+      "step_mm": 20.0,
+      "n_points_1d": 11,
+      "max_interpolation_error_pct": 3.749
+    }
+  ]
+}
