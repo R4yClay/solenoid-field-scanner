@@ -116,7 +116,7 @@ def build_formula_images(img_dir):
     return formulas
 
 
-def add_header_and_footer(slide, title_text, subtitle_text, slide_num, total_slides=12):
+def add_header_and_footer(slide, title_text, subtitle_text, slide_num, total_slides=13):
     top_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(1.05))
     top_bar.fill.solid()
     top_bar.fill.fore_color.rgb = NAVY
@@ -356,7 +356,7 @@ def generate_presentation(out_dir, img_dir):
 
     num1 = s1.shapes.add_textbox(Inches(11.0), Inches(6.95), Inches(1.9), Inches(0.4))
     pn1 = num1.text_frame.paragraphs[0]
-    pn1.text = "Слайд 1 из 12"
+    pn1.text = "Слайд 1 из 13"
     pn1.font.name = 'Arial'
     pn1.font.size = Pt(11)
     pn1.font.bold = True
@@ -672,11 +672,41 @@ def generate_presentation(out_dir, img_dir):
              ], bg_color=RGBColor(235, 243, 255), border_color=BLUE, font_size=13.5)
 
     # =========================================================================
-    # СЛАЙД 12: ИТОГОВЫЕ ВЫВОДЫ ПО РАБОТЕ + QR-КОД НА GITHUB
+    # СЛАЙД 12: АППАРАТНАЯ КОМПОНОВКА ДВУХКООРДИНАТНОГО СТЕНДА (ФОТО)
+    # =========================================================================
+    s_hw = prs.slides.add_slide(blank)
+    add_header_and_footer(s_hw, "11. Аппаратная компоновка двухкоординатного стенда",
+                          "Интеграция разработанного цифрового ядра с координатным приводом и датчиком Холла", 12)
+
+    add_card(s_hw, 0.45, 1.3, 5.7, 2.75,
+             title="1. Кинематика и немагнитная конструкция:",
+             bullets=[
+                 "• Подвижный 2D-портал (оси X и Z) на профиле 2020 с рельсами MGN, винтами Т8 и двумя моторами NEMA 17.",
+                 "• Все стальные валы вынесены на > 15 см от катушки (отсутствие ферромагнитных искажений поля).",
+                 "• Внутрь соленоида консольно входит только немагнитная штанга из PLA с датчиком Холла Honeywell SS49E."
+             ], bg_color=RGBColor(235, 243, 255), border_color=BLUE, font_size=13.2)
+
+    add_card(s_hw, 0.45, 4.2, 5.7, 2.65,
+             title="2. Электрический тракт и связь с ПК:",
+             bullets=[
+                 "• Контроллер Arduino Nano (связь с ноутбуком по USB / Serial) + 2 драйвера шаговых двигателей A4988.",
+                 "• Внешний 16-битный АЦП ADS1115 (шина I2C) для точной оцифровки аналогового сигнала датчика Холла.",
+                 "• Стабилизатор тока LM2596 для питания обмотки медного соленоида от сетевого адаптера 12 В (евровилка)."
+             ], bg_color=BG_LIGHT, border_color=GREEN, title_color=GREEN, font_size=13.2)
+
+    add_picture_with_caption(
+        s_hw,
+        os.path.join(img_dir, 'prototype_topdown_eu_verified.jpg'),
+        left=6.4, top=1.3, width=6.45,
+        caption_text="Рис. 6. Общий вид двухкоординатного стенда сканирования магнитного поля соленоида"
+    )
+
+    # =========================================================================
+    # СЛАЙД 13: ИТОГОВЫЕ ВЫВОДЫ ПО РАБОТЕ + QR-КОД НА GITHUB
     # =========================================================================
     s12 = prs.slides.add_slide(blank)
-    add_header_and_footer(s12, "11. Основные выводы по работе и открытый репозиторий",
-                          "Сводка результатов исследования и QR-код исходного кода проекта на GitHub", 12)
+    add_header_and_footer(s12, "12. Основные выводы по работе и открытый репозиторий",
+                          "Сводка результатов исследования и QR-код исходного кода проекта на GitHub", 13)
 
     add_kpi_box(s12, 0.45, 1.3, 2.9, 1.15, "0,208 %", "Точность модели на оси\n(при гипотезе < 0,5%)", GREEN)
     add_kpi_box(s12, 3.6, 1.3, 2.9, 1.15, "64,6 %", "Плато однородности L/D = 5\n(при гипотезе > 60%)", BLUE)

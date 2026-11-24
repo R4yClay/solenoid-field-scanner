@@ -654,8 +654,17 @@ def build_research_paper(out_dir, img_dir):
         r2.font.name = 'Times New Roman'
         r2.font.size = Pt(14)
 
-    add_p(doc, "«В качестве дальнейшего развития системы предусмотрена прямая аппаратная интеграция разработанного Python-ядра с двухкоординатным ЧПУ-столом на базе шаговых двигателей NEMA 17, микроконтроллера Arduino Nano, 16-битного модуля АЦП ADS1115 и датчика Холла SS49E по протоколу G-code / Serial. Это позволит реализовать гибридный стенд, в котором реальные измерения датчика в реальном времени накладываются на карту цифрового двойника для автоматической отбраковки дефектных катушек и соленоидов».",
-          bold=True, indent_mm=0, space_before=6)
+    add_p(doc, "«В качестве дальнейшего развития системы предусмотрена прямая аппаратная интеграция разработанного Python-ядра с двухкоординатным ЧПУ-столом на базе подвижного портала на профиле 2020, шаговых двигателей NEMA 17, драйверов A4988, микроконтроллера Arduino Nano, 16-битного модуля АЦП ADS1115, стабилизатора тока катушки LM2596 и датчика Холла Honeywell SS49E на немагнитной штанге из PLA-пластика по протоколу G-code / Serial (рисунок 6). Это позволяет реализовать гибридный стенд, в котором реальные измерения датчика в реальном времени накладываются на карту цифрового двойника для автоматической отбраковки дефектных катушек и соленоидов».",
+          bold=True, indent_mm=0, space_before=6, space_after=6)
+
+    hw_photo_path = os.path.join(img_dir, 'prototype_topdown_eu_verified.jpg')
+    if os.path.exists(hw_photo_path):
+        p_hw = doc.add_paragraph()
+        p_hw.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_hw.paragraph_format.first_line_indent = Mm(0)
+        p_hw.add_run().add_picture(hw_photo_path, width=Mm(120))
+        add_p(doc, "Рисунок 6 — Общий вид аппаратной компоновки двухкоординатного стенда сканирования магнитного поля соленоида (крупное фото — в Приложении)",
+              italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, indent_mm=0, font_size=12, space_after=6)
 
     doc.add_page_break()
 
@@ -722,7 +731,8 @@ def build_research_paper(out_dir, img_dir):
         ('fig2_axis_verification.png', "Рисунок А.2 — График верификации модели вдоль оси соленоида (положительный и отрицательный контроли) и распределение погрешности"),
         ('fig3_2d_heatmap.png', "Рисунок А.3 — Двумерная топографическая тепловая карта модуля магнитной индукции |B(x, z)| и линии векторного поля"),
         ('fig4_radial_profiles.png', "Рисунок А.4 — Семейство радиальных профилей продольной индукции Bz(x) в различных сечениях соленоида"),
-        ('fig5_uniformity_study.png', "Рисунок А.5 — Сравнение нормированных профилей индукции и ширины плато однородности для соленоидов с L/D = 1; 2,5; 5; 10")
+        ('fig5_uniformity_study.png', "Рисунок А.5 — Сравнение нормированных профилей индукции и ширины плато однородности для соленоидов с L/D = 1; 2,5; 5; 10"),
+        ('prototype_topdown_eu_verified.jpg', "Рисунок А.6 — Аппаратная компоновка двухкоординатного стенда сканирования поля соленоида (2D-портал на профиле 2020, немагнитный щуп с датчиком Холла SS49E, Arduino Nano, драйверы A4988, 16-битный АЦП ADS1115 и стабилизатор тока LM2596)")
     ]
     for fname, cap in app_figs:
         fpath = os.path.join(img_dir, fname)
@@ -756,7 +766,7 @@ def build_research_paper(out_dir, img_dir):
         p_qr.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_qr.paragraph_format.first_line_indent = Mm(0)
         p_qr.add_run().add_picture(qr_img_path, width=Mm(45))
-        add_p(doc, "Рисунок А.6 — QR-код открытого репозитория проекта на GitHub (https://github.com/R4yClay/solenoid-field-scanner)",
+        add_p(doc, "Рисунок А.7 — QR-код открытого репозитория проекта на GitHub (https://github.com/R4yClay/solenoid-field-scanner)",
               bold=True, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, indent_mm=0, font_size=12, space_after=6)
 
     out_file_main = os.path.join(out_dir, f'{AUTHOR_SHORT_FILE}.docx')
